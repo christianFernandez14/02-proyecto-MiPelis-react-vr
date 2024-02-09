@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { guardarEnStorage } from "../helpers/guardarEnStorage"
+
 const CrearPelicula = () => {
 
   const [peliSate, setPeliSate] = useState({
@@ -31,34 +33,13 @@ const CrearPelicula = () => {
     setPeliSate(pelicula)
 
     // Guardando en el Almacenamiento Local
-    guardarEnStorage(pelicula)
+    guardarEnStorage("Pelicula", pelicula)
+    
+    // Y podriamos crear hasta almacenamiento tipo copias
+    guardarEnStorage("copia_pelis", pelicula)
+    
 
-
-  }
-
-  const guardarEnStorage = peli => {
-    // Conseguimos los elementos que ya tenemos en el LocalStorage
-    let elementos = JSON.parse(localStorage.getItem("Peliculas"))
-
-    // Comprobamos si es un Array 
-    if(Array.isArray(elementos)){
-
-      // Añadimos dentro del array un elemento nuevo
-      elementos.push(peli)
-    }else{
-
-      // Creamos un array con la nueva peli
-      elementos = [peli]
-    }
-
-    // Guardamos en el LocalStorage
-    localStorage.setItem('Peliculas', JSON.stringify(elementos))
-
-    // Devolvemos el obejto guaardo - Por si deseas utilzar el ultimo creado
-    return peli
-
-  }
-
+  }  
 
   return (
     <div className="add">
