@@ -1,4 +1,6 @@
-
+import Listado from "./components/Listado"
+import Buscador from "./components/Buscador"
+import CrearPelicula from "./components/CrearPelicula"
 
 const App = () => {
 
@@ -25,56 +27,15 @@ const App = () => {
 
      {/* Contenido principal */}
       <section className="content">
-        
-        <article className="peli-item">
-          <h3 className="title">Desarrollo web</h3>
-          <p className="description">christianweb.cl</p>
-          <button className="edit">Editar</button>
-          <button className="delete">Borrar</button>
-        </article>
 
-        <article className="peli-item">
-          <h3 className="title">Desarrollo web</h3>
-          <p className="description">christianweb.cl</p>
-          <button className="edit">Editar</button>
-          <button className="delete">Borrar</button>
-        </article>
-
-        <article className="peli-item">
-          <h3 className="title">Desarrollo web</h3>
-          <p className="description">christianweb.cl</p>
-          <button className="edit">Editar</button>
-          <button className="delete">Borrar</button>
-        </article>
-
-        <article className="peli-item">
-          <h3 className="title">Desarrollo web</h3>
-          <p className="description">christianweb.cl</p>
-          <button className="edit">Editar</button>
-          <button className="delete">Borrar</button>
-        </article>
-
+        {/*Aca va le listado de peliculas */}
+        <Listado />
       </section>
 
      {/* Barra lateral */}
-      <aside className="lateral">
-        
-        <div className="search">
-          <h3 className="title">Buscador</h3>
-          <form>
-            <input type="text" />
-            <button>Buscar</button>
-          </form>
-        </div>
-
-        <div className="add">
-          <h3 className="title">Añadir pelicula</h3>
-          <form>
-            <input type="text" placeholder="Titulo" />
-            <textarea placeholder="Descripcion"></textarea>
-            <input type="submit" value="Guardar" />
-          </form>
-        </div>
+      <aside className="lateral">        
+        <Buscador />
+        <CrearPelicula />
       </aside>
 
       {/* Pie de pagina */}
