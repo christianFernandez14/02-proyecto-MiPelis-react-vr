@@ -7,7 +7,7 @@ const CrearPelicula = () => {
     descripcion: ''
   })
 
-  const {titulo, descripcion} = peliSate
+  const { titulo, descripcion } = peliSate
 
 
   const titleComponent = 'Añadir pelicula'
@@ -16,7 +16,6 @@ const CrearPelicula = () => {
     e.preventDefault()
 
     // Tomamos los datos del fomulario
-
     const target = e.target
     const titulo = target.titulo.value
     const descripcion = target.descripcion.value
@@ -28,7 +27,35 @@ const CrearPelicula = () => {
       descripcion
     }
 
+    // Guardando en el Estado
     setPeliSate(pelicula)
+
+    // Guardando en el Almacenamiento Local
+    guardarEnStorage(pelicula)
+
+
+  }
+
+  const guardarEnStorage = peli => {
+    // Conseguimos los elementos que ya tenemos en el LocalStorage
+    let elementos = JSON.parse(localStorage.getItem("Peliculas"))
+
+    // Comprobamos si es un Array 
+    if(Array.isArray(elementos)){
+
+      // Añadimos dentro del array un elemento nuevo
+      elementos.push(peli)
+    }else{
+
+      // Creamos un array con la nueva peli
+      elementos = [peli]
+    }
+
+    // Guardamos en el LocalStorage
+    localStorage.setItem('Peliculas', JSON.stringify(elementos))
+
+    // Devolvemos el obejto guaardo - Por si deseas utilzar el ultimo creado
+    return peli
 
   }
 
@@ -38,7 +65,7 @@ const CrearPelicula = () => {
       <h3 className="title">{titleComponent}</h3>
 
       <strong>
-        {(titulo && descripcion) && 'Haz Añadido: '+titulo}
+        {(titulo && descripcion) && 'Haz Añadido: ' + titulo}
       </strong>
 
       <form onSubmit={handleSubmit}>
