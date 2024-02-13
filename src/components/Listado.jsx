@@ -12,12 +12,34 @@ const Listado = ({ listadoState, setListadoState }) => {
     let peliculas = JSON.parse(localStorage.getItem('Pelicula'))
 
     setListadoState(peliculas)
+
+    return peliculas
+  }
+
+  const borrarPelicula = id => {
+
+    // console.log(id)
+
+    // Conseguir peliculas almacenadas
+    let peliculasAlmacendas = conseguirPeliculas()
+    // console.log(peliculasAlmacendas)
+
+    // Filtramos esas peliculas para que elimine del array la que no quiero
+    let nuevoListadoPeliculas = peliculasAlmacendas.filter(x => (x.id !== parseInt(id)))
+    // console.log(nuevoListadoPeliculas)
+
+    // Actulizamos el State del Listado
+    setListadoState(nuevoListadoPeliculas)
+
+    // Actualizamos los datos en el LocalStorage
+    localStorage.setItem('Pelicula', JSON.stringify(nuevoListadoPeliculas))
+
   }
 
 
   return (
     <>
-      {!listadoState
+      {!listadoState.length
         ? <h1>No hay peliculas que mostrar</h1>
         : listadoState.map(peli => (
           <article
@@ -27,7 +49,10 @@ const Listado = ({ listadoState, setListadoState }) => {
             <h3 className="title">{peli.titulo}</h3>
             <p className="description">{peli.descripcion}</p>
             <button className="edit">Editar</button>
-            <button className="delete">Borrar</button>
+            <button
+              className="delete"
+              onClick={() => borrarPelicula(peli.id)}
+            >Borrar</button>
           </article>
 
         ))}
