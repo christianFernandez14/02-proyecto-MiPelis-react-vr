@@ -22,20 +22,12 @@ const Listado = ({ listadoState, setListadoState }) => {
 
   const borrarPelicula = id => {
 
-    // console.log(id)
-
-    // Conseguir peliculas almacenadas
     let peliculasAlmacendas = conseguirPeliculas()
-    // console.log(peliculasAlmacendas)
 
-    // Filtramos esas peliculas para que elimine del array la que no quiero
     let nuevoListadoPeliculas = peliculasAlmacendas.filter(x => (x.id !== parseInt(id)))
-    // console.log(nuevoListadoPeliculas)
 
-    // Actulizamos el State del Listado
     setListadoState(nuevoListadoPeliculas)
 
-    // Actualizamos los datos en el LocalStorage
     localStorage.setItem('Pelicula', JSON.stringify(nuevoListadoPeliculas))
 
   }

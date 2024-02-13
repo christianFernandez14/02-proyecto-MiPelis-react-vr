@@ -17,32 +17,23 @@ const CrearPelicula = ({ setListadoState }) => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    // Tomamos los datos del fomulario
     const target = e.target
     const titulo = target.titulo.value
     const descripcion = target.descripcion.value
 
-    // Creamos el objeto de cada pelicula a guardar
     const pelicula = {
       id: new Date().getTime(),
       titulo,
       descripcion
     }
 
-    // Guardando en el Estado
     setPeliSate(pelicula)
 
-    // Actulizamos el estado del listado principal
     setListadoState(elementos => {
       return [...elementos, pelicula]
     })
 
-    // Guardando en el Almacenamiento Local
     guardarEnStorage("Pelicula", pelicula)
-
-    // Y podriamos crear hasta almacenamiento tipo copias
-    // guardarEnStorage("copia_pelis", pelicula)
-
 
   }
 

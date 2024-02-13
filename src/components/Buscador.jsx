@@ -7,10 +7,8 @@ const Buscador = ({ listadoState, setListadoState }) => {
   const [noEncontrado, setNoEncontrado] = useState(false)
 
   const buscarPelicula = e => {
-    // Creamos el estado y lo actulizamos
     setBusqueda(e.target.value)
 
-    // Filtrar par buscar coincidencias
     let peliculasEncontradas = listadoState.filter(x => (
       x.titulo.toLowerCase().includes(busqueda.toLowerCase())
     ))
@@ -22,7 +20,6 @@ const Buscador = ({ listadoState, setListadoState }) => {
       setNoEncontrado(false)
     }
 
-    // Actulizar estado del listado principal con lo que logre filtrar
     setListadoState(peliculasEncontradas)
   }
 
