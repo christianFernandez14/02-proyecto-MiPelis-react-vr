@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { guardarEnStorage } from "../helpers/guardarEnStorage"
 
-const CrearPelicula = () => {
+const CrearPelicula = ({ setListadoState }) => {
 
   const [peliSate, setPeliSate] = useState({
     titulo: '',
@@ -32,14 +32,19 @@ const CrearPelicula = () => {
     // Guardando en el Estado
     setPeliSate(pelicula)
 
+    // Actulizamos el estado del listado principal
+    setListadoState(elementos => {
+      return [...elementos, pelicula]
+    })
+
     // Guardando en el Almacenamiento Local
     guardarEnStorage("Pelicula", pelicula)
-    
-    // Y podriamos crear hasta almacenamiento tipo copias
-    guardarEnStorage("copia_pelis", pelicula)
-    
 
-  }  
+    // Y podriamos crear hasta almacenamiento tipo copias
+    // guardarEnStorage("copia_pelis", pelicula)
+
+
+  }
 
   return (
     <div className="add">

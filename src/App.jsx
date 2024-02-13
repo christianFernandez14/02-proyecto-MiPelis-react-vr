@@ -1,17 +1,20 @@
+import { useState } from "react"
+
 import Listado from "./components/Listado"
 import Buscador from "./components/Buscador"
 import CrearPelicula from "./components/CrearPelicula"
 
 const App = () => {
+  const [listadoState, setListadoState] = useState([])
 
   return (
     <div className="layout">
 
       {/* Cebecera  */}
       <header className="header">
-       <div className="logo">
-        <div className="play"></div>
-       </div>
+        <div className="logo">
+          <div className="play"></div>
+        </div>
         <h1>MisPelis</h1>
       </header>
 
@@ -25,17 +28,22 @@ const App = () => {
         </ul>
       </nav>
 
-     {/* Contenido principal */}
+      {/* Contenido principal */}
       <section className="content">
 
         {/*Aca va le listado de peliculas */}
-        <Listado />
+        <Listado
+          listadoState={listadoState}
+          setListadoState={setListadoState}
+        />
       </section>
 
-     {/* Barra lateral */}
-      <aside className="lateral">        
+      {/* Barra lateral */}
+      <aside className="lateral">
         <Buscador />
-        <CrearPelicula />
+        <CrearPelicula
+          setListadoState={setListadoState}
+        />
       </aside>
 
       {/* Pie de pagina */}
