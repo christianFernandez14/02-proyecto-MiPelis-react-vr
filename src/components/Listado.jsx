@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react"
 
+import Editar from "./Editar"
+
 const Listado = ({ listadoState, setListadoState }) => {
+
+  const [editar, setEditar] = useState(0)
 
 
   useEffect(() => {
@@ -48,11 +52,27 @@ const Listado = ({ listadoState, setListadoState }) => {
           >
             <h3 className="title">{peli.titulo}</h3>
             <p className="description">{peli.descripcion}</p>
-            <button className="edit">Editar</button>
+
+            <button
+              className="edit"
+              onClick={() => setEditar(peli.id)}
+            >Editar</button>
+
             <button
               className="delete"
               onClick={() => borrarPelicula(peli.id)}
             >Borrar</button>
+
+            {/* Aparecera un formulario par editar la informacion */}
+            {editar === peli.id && (
+              <Editar
+                peli={peli}
+                conseguirPeliculas={conseguirPeliculas}
+                setEditar={setEditar}
+                setListadoState={setListadoState}
+              />
+            )}
+
           </article>
 
         ))}

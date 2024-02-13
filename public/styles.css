@@ -143,7 +143,8 @@ input[type="button"] {
   border-left: 1px solid #ddd;
 }
 
-.lateral > div {
+.lateral > div,
+.edit_form {
   box-sizing: border-box;
   width: 90%;
   margin: 20px;
@@ -155,7 +156,9 @@ input[type="button"] {
 }
 
 .lateral input[type="text"],
-.lateral textarea {
+.lateral textarea, 
+.titulo_editado, 
+.descripcion_editada {
   display: block;
   margin: 0 auto;
   margin-top: 15px;
