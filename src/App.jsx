@@ -40,7 +40,10 @@ const App = () => {
 
       {/* Barra lateral */}
       <aside className="lateral">
-        <Buscador />
+        <Buscador
+          listadoState={listadoState}
+          setListadoState={setListadoState}
+        />
         <CrearPelicula
           setListadoState={setListadoState}
         />
